@@ -47,8 +47,10 @@ get-latest-postal-version() {
         echo "jq could not be found. Install jq before continuing." > /dev/stderr
         return 1
     fi
+  ## modified version 
+  ##  local response=`curl -s https://api.github.com/repos/postalserver/postal/releases/latest`
+  local response=`curl -s https://api.github.com/repos/grosucon/postal/releases/latest`
 
-    local response=`curl -s https://api.github.com/repos/postalserver/postal/releases/latest`
 
     local error=`echo $response | jq -r '.message'`
     if [[ "$error" == *"rate limit exceeded"* ]]; then
